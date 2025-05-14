@@ -1,0 +1,53 @@
+#traveling salesman problem
+#include <stdio.h>
+#include <limits.h>
+
+#define V 4  // Number of cities
+
+// Function to find the minimum cost path using Dynamic Programming
+int tspDP(int dist[][V], int dp[][1 << V], int visited[], int pos, int mask) {
+    // Base case: If all cities are visited, return the distance to the starting city
+    if (mask == (1 << V) - 1) {
+        return dist[pos][0];
+    }
+
+    // If this subproblem has been solved, return the stored result
+    if (dp[pos][mask] != -1) {
+        return dp[pos][mask];
+    }
+
+    // Initialize the minimum cost to a large value
+    int ans = INT_MAX;
+
+    // Try visiting every other city from the current position
+    for (int city = 0; city < V; city++) {
+        if ((mask & (1 << city)) == 0) {  // If the city hasn't been visited yet
+            int newAns = dist[pos][city] + tspDP(dist, dp, visited, city, mask | (1 << city));
+            ans = (ans < newAns) ? ans : newAns;  // Take the minimum
+        }
+    }
+
+    // Store the result and return
+    dp[pos][mask] = ans;
+    return ans;
+}
+
+// Function to find the minimum cost and the optimal path using Dynamic Programming
+void travellingSalesman(int dist[][V]) {
+    int dp[V][1 << V];  // DP table, where dp[i][mask] stores the minimum cost from city i with visited cities mask
+    int visited[V];      // To store the visited cities
+    
+    // Initialize the dp table with -1 (indicating no solution for that subproblem yet)
+    for (int i = 0; i < V; i++) {
+        for (int mask = 0; mask < (1 << V); mask++) {
+            dp[i][mask] = -1;
+        }
+    }
+
+    // Start the TSP from city 0
+    int minCost = tspDP(dist, dp, visited, 0, 1);  // Starting from city 0 with only city 0 visited
+
+    // Print the result
+    printf("The minimum cost is: %d\n", minCost);
+}
+
