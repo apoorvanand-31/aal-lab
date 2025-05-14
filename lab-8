@@ -1,0 +1,40 @@
+#floyd's algo
+#include <stdio.h>
+
+#define V 4
+#define INF 99999  // A large value representing infinity
+
+void printSolution(int dist[V][V]) {
+    printf("Shortest distances between every pair of vertices:\n");
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            if (dist[i][j] == INF)
+                printf("%4s", "INF");
+            else
+                printf("%4d", dist[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void floydWarshall(int graph[V][V]) {
+    int dist[V][V];
+
+    // Initialize distance matrix same as input graph matrix
+    for (int i = 0; i < V; i++)
+        for (int j = 0; j < V; j++)
+            dist[i][j] = graph[i][j];
+
+    // Update distances using each vertex as an intermediate point
+    for (int k = 0; k < V; k++) {
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                if (dist[i][k] + dist[k][j] < dist[i][j])
+                    dist[i][j] = dist[i][k] + dist[k][j];
+            }
+        }
+    }
+
+    // Print the final distance matrix
+    printSolution(dist);
+}
