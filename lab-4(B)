@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #define V 5
-#define E 7  // Number of edges
+#define E 7
 
 struct Edge {
     int src, dest, weight;
@@ -16,9 +16,9 @@ struct Graph {
 int parent[V];
 
 int find(int i) {
-    while (i != parent[i])
-        i = parent[i];
-    return i;
+    if (parent[i] != i)
+        parent[i] = find(parent[i]);  // Path compression
+    return parent[i];
 }
 
 void unionSet(int u, int v) {
@@ -32,9 +32,9 @@ int compareEdges(const void* a, const void* b) {
 }
 
 void kruskalMST(struct Graph* graph) {
-    struct Edge result[V];  // To store MST
-    int e = 0;  // Count of edges in result
-    int i = 0;
+    struct Edge result[V];  // To store MST edges
+    int e = 0;              // Index for result[]
+    int i = 0;              // Index for sorted edges
 
     for (int v = 0; v < V; v++)
         parent[v] = v;
@@ -53,7 +53,27 @@ void kruskalMST(struct Graph* graph) {
         }
     }
 
+    int totalWeight = 0;
     printf("Edge \tWeight\n");
-    for (i = 0; i < e; i++)
+    for (i = 0; i < e; i++) {
         printf("%d - %d \t%d\n", result[i].src, result[i].dest, result[i].weight);
+        totalWeight += result[i].weight;
+    }
+    printf("Total weight of MST: %d\n", totalWeight);
 }
+
+int main() {
+    struct Graph graph = {{
+        {0, 1, 10},
+        {0, 2, 6},
+        {0, 3, 5},
+        {1, 3, 15},
+        {2, 3, 4},
+        {1, 4, 9},
+        {3, 4, 7}
+    }};
+
+    kruskalMST(&graph);
+    return 0;
+}
+
