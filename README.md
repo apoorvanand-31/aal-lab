@@ -10,6 +10,10 @@ Lab 7: Heap Sort
 Lab 8: Floyd’s Algorithm
 Lab 9: N Queens Problem (Backtracking)
 Lab 10: Travelling Salesman Problem
+
+
+
+
 ##Author
 Name: Apoorv Anand
 USN: 1BM23AI031
