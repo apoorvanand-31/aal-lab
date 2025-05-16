@@ -1,0 +1,7 @@
+Edge 	Weight
+0 - 1 	2
+1 - 2 	3
+0 - 3 	6
+1 - 4 	5
+Total weight of MST: 16
+
