@@ -1,4 +1,4 @@
-#selection sort
+//selection sort
 #include <stdio.h>
 
 // Function to perform selection sort
