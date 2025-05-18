@@ -1,4 +1,4 @@
-#n queen using backtracking
+//n queen using backtracking
 #include <stdio.h>
 #include <stdbool.h>
 
