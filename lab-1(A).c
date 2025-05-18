@@ -1,4 +1,4 @@
-#bubble sort
+//bubble sort
 #include <stdio.h>
 
 // Function to perform Bubble Sort
