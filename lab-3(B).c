@@ -1,4 +1,4 @@
-#quick sort
+//quick sort
 #include <stdio.h>
 
 // Partition using Lomuto scheme
