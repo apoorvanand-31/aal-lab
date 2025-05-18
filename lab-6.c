@@ -1,4 +1,4 @@
-#topological sort using dfs
+//topological sort using dfs
 #include <stdio.h>
 #include <stdlib.h>
 
