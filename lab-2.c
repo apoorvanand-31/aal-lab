@@ -1,4 +1,4 @@
-#string matching using dfs
+//string matching using dfs
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
