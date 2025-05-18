@@ -1,4 +1,4 @@
-#heap sort
+//heap sort
 #include <stdio.h>
 
 // Function to heapify a subtree rooted at index i
