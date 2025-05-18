@@ -1,4 +1,4 @@
-#merge sort
+//merge sort
 #include <stdio.h>
 
 // Merge two subarrays
